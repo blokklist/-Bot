@@ -247,7 +247,7 @@ module.exports = {
     const channelId = getChannelId(category);
     try {
       const existing = await db.query(
-        "SELECT message_id, channel_id, ref_id, reason FROM pastes WHERE vrc_id = ? AND category = ? LIMIT 1",
+        "SELECT message_id, channel_id, ref_id, reason, created_at FROM pastes WHERE vrc_id = ? AND category = ? LIMIT 1",
         [vrcUser.id, category]
       );
       if (existing.length && existing[0].ref_id) {
@@ -282,7 +282,8 @@ module.exports = {
             try {
               const { buildBlocklistContainer } = require("../helper/buildContainer");
               const { MessageFlags } = require("discord.js");
-              const container = buildBlocklistContainer(vrcUser, truncatedCombined, existing[0].ref_id, category);
+              const existingDate = existing[0].created_at ? new Date(existing[0].created_at).toISOString().slice(0, 10) : null;
+              const container = buildBlocklistContainer(vrcUser, truncatedCombined, existing[0].ref_id, category, existingDate);
               const wh = await getWebhook(oldChannel);
               await wh.editMessage(existing[0].message_id, {
                 components: [container],
@@ -311,7 +312,8 @@ module.exports = {
     }
     const { buildBlocklistContainer } = require("../helper/buildContainer");
     const { MessageFlags } = require("discord.js");
-    const container = buildBlocklistContainer(vrcUser, translatedReason, refId, category);
+    const today = new Date().toISOString().slice(0, 10);
+    const container = buildBlocklistContainer(vrcUser, translatedReason, refId, category, today);
     if (channelId) {
       const channel = interaction.guild.channels.cache.get(channelId);
       if (channel) {
@@ -324,9 +326,9 @@ module.exports = {
         try {
           await db.transaction(async (conn) => {
             await conn.execute(
-              `INSERT INTO pastes (ref_id, vrc_id, vrc_name, category, message_id, channel_id, reason)
-               VALUES (?, ?, ?, ?, ?, ?, ?)`,
-              [refId, vrcUser.id, vrcUser.displayName, category, msg.id, channelId, translatedReason]
+              `INSERT INTO pastes (ref_id, vrc_id, vrc_name, category, message_id, channel_id, reason, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+              [refId, vrcUser.id, vrcUser.displayName, category, msg.id, channelId, translatedReason, today]
             );
             await conn.execute(
               "INSERT INTO paste_log (user_hash) VALUES (?)",

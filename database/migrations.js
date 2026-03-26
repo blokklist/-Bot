@@ -201,6 +201,15 @@ const migrations = [
       }
     },
   },
+  {
+    name: "008_add_created_at_to_pastes",
+    async up() {
+      const cols = await db.query("SHOW COLUMNS FROM pastes");
+      if (!cols.some(c => c.Field === "created_at")) {
+        await db.query("ALTER TABLE pastes ADD COLUMN created_at DATE DEFAULT NULL");
+      }
+    },
+  },
 ];
 
 async function runMigrations() {

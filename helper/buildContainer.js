@@ -50,9 +50,10 @@ function getLanguages(vrcUser) {
  * @param {string} reason   - Reason for blocklisting
  * @param {string} refId    - Reference ID (e.g. "A1B2C3D4")
  * @param {string} category - Category ID (e.g. "CRASHERS")
+ * @param {string|null} createdAt - Original creation date (e.g. "2026-03-26") or null
  * @returns {ContainerBuilder}
  */
-function buildBlocklistContainer(vrcUser, reason, refId, category) {
+function buildBlocklistContainer(vrcUser, reason, refId, category, createdAt = null) {
   const displayName = trunc(vrcUser.displayName || "Unknown", 256);
   const pronouns    = vrcUser.pronouns?.trim() || "\u2013";
   const bio         = trunc(vrcUser.bio?.trim() || "No bio available", 950);
@@ -140,8 +141,9 @@ function buildBlocklistContainer(vrcUser, reason, refId, category) {
   );
 
   // Footer
+  const datePart = createdAt ? ` \u2022 ${createdAt}` : "";
   container.addTextDisplayComponents(
-    (td) => td.setContent(`-# BLOCKLIST v4 \u2022 REF: ${refId} \u2022 -${category}`),
+    (td) => td.setContent(`-# BLOCKLIST v4 \u2022 REF: ${refId} \u2022 -${category}${datePart}`),
   );
 
   return container;

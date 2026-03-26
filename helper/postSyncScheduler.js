@@ -24,7 +24,7 @@ function sleep(ms) {
 async function checkPosts(client) {
   let posts = [];
   try {
-    posts = await db.query("SELECT ref_id, vrc_id, vrc_name, category, reason, message_id, channel_id FROM pastes");
+    posts = await db.query("SELECT ref_id, vrc_id, vrc_name, category, reason, message_id, channel_id, created_at FROM pastes");
   } catch (err) {
     console.error("[PostSync] Failed to fetch posts:", err.message);
     return;
@@ -90,7 +90,8 @@ async function checkPosts(client) {
       console.warn(`[PostSync] DeepL translation skipped: ${err.message}`);
     }
 
-    const container = buildBlocklistContainer(vrcUser, reason, post.ref_id, post.category);
+    const createdAt = post.created_at ? new Date(post.created_at).toISOString().slice(0, 10) : null;
+    const container = buildBlocklistContainer(vrcUser, reason, post.ref_id, post.category, createdAt);
 
     try {
       const webhook = await getWebhook(channel);
@@ -123,7 +124,7 @@ async function checkPosts(client) {
 async function checkNames(client) {
   let posts = [];
   try {
-    posts = await db.query("SELECT ref_id, vrc_id, vrc_name, reason, category, message_id, channel_id FROM pastes");
+    posts = await db.query("SELECT ref_id, vrc_id, vrc_name, reason, category, message_id, channel_id, created_at FROM pastes");
   } catch (err) {
     console.error("[NameCheck] Failed to fetch posts:", err.message);
     return;
@@ -167,7 +168,8 @@ async function checkNames(client) {
       if (channel) {
         try {
           const reason = post.reason || "No reason recorded";
-          const container = buildBlocklistContainer(vrcUser, reason, post.ref_id, post.category);
+          const createdAt = post.created_at ? new Date(post.created_at).toISOString().slice(0, 10) : null;
+    const container = buildBlocklistContainer(vrcUser, reason, post.ref_id, post.category, createdAt);
           const webhook = await getWebhook(channel);
           await webhook.editMessage(post.message_id, {
             components: [container],
