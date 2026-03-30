@@ -1,5 +1,15 @@
 # BlocklistBot
 
+**⚠️ Important Notice**
+
+This project is published **for transparency purposes only**.  
+It is **not licensed for use**.  
+
+You are **not permitted** to run, deploy, host, modify, or use this bot in any way.  
+It is made public solely so that the community can see and audit the code.
+
+See the [LICENSE](LICENSE) file for full details.
+
 VRChat blocklist bot for Discord. Lets people report VRChat users into different categories, the community can vote to take posts down if they dont belong there.
 
 Built with discord.js v14 and MySQL.
