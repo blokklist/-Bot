@@ -1,17 +1,17 @@
-# License
+#License
 
 **Copyright (c) 2026 blokklist**
 
 This repository and all its contents (the "Software") are made publicly available  
 **solely for transparency and educational purposes**.
 
-## Permitted Actions
+##Permitted Actions
 You are permitted to:
 - View the source code
 - Fork the repository on GitHub
 - Study and analyze the code for personal, non-commercial review
 
-## Prohibited Actions
+##Prohibited Actions
 You are **strictly prohibited** from:
 - Running, executing, deploying, hosting, or operating the Software (or any modified version)
 - Using the Software in any production, testing, or personal environment
@@ -22,7 +22,7 @@ You are **strictly prohibited** from:
 This project is **not open source** and is **not licensed for use**.  
 It is published exclusively to enable public scrutiny and transparency regarding the BlocklistBot.
 
-## Disclaimer
+##Disclaimer
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,  
 INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR  
 PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE  
