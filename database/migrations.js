@@ -11,6 +11,8 @@
 // 005 — drop unused paste columns (bio, links, avatar_url, etc.)
 // 006 — anonymize: remove sequential IDs, use random/composite PKs
 // 007 — add reason column to pastes (for self-healing sync)
+// 008 — add created_at column to pastes (original post date in footer)
+// 009 — feedbacks + feedback_log tables
 
 const db = require("./db");
 
@@ -208,6 +210,31 @@ const migrations = [
       if (!cols.some(c => c.Field === "created_at")) {
         await db.query("ALTER TABLE pastes ADD COLUMN created_at DATE DEFAULT NULL");
       }
+    },
+  },
+  {
+    name: "009_create_feedback_table",
+    async up() {
+      await db.query(`
+        CREATE TABLE IF NOT EXISTS feedbacks (
+          id           INT NOT NULL PRIMARY KEY,
+          user_hash    VARCHAR(64)  NOT NULL,
+          type         ENUM('feedback','feature','bug') NOT NULL DEFAULT 'feedback',
+          title        VARCHAR(200) NOT NULL,
+          description  TEXT         NOT NULL,
+          message_id   VARCHAR(30)  DEFAULT NULL,
+          channel_id   VARCHAR(30)  DEFAULT NULL,
+          status       ENUM('open','answered','closed') DEFAULT 'open',
+          answer       TEXT         DEFAULT NULL,
+          created_at   DATETIME     DEFAULT CURRENT_TIMESTAMP
+        ) CHARACTER SET utf8mb4;
+      `);
+      await db.query(`
+        CREATE TABLE IF NOT EXISTS feedback_log (
+          user_hash  VARCHAR(64) NOT NULL,
+          created_at DATETIME    DEFAULT CURRENT_TIMESTAMP
+        ) CHARACTER SET utf8mb4;
+      `);
     },
   },
 ];

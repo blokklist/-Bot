@@ -67,6 +67,12 @@ client.on("interactionCreate", async (interaction) => {
       } else if (interaction.customId === "tdr_modal") {
         const cmd = client.commands.get("tdr");
         if (cmd?.handleModal) await cmd.handleModal(interaction);
+      } else if (interaction.customId === "feedback_modal") {
+        const cmd = client.commands.get("feedback");
+        if (cmd?.handleModal) await cmd.handleModal(interaction);
+      } else if (interaction.customId === "answer_modal") {
+        const cmd = client.commands.get("answer");
+        if (cmd?.handleModal) await cmd.handleModal(interaction);
       } else {
         const commandName = interaction.customId.replace("_modal", "");
         const command = client.commands.get(commandName);
@@ -82,6 +88,10 @@ client.on("interactionCreate", async (interaction) => {
       if (interaction.customId === "paste_category_select") {
         const cmd = client.commands.get("paste");
         if (cmd?.handleCategorySelect) await cmd.handleCategorySelect(interaction);
+      }
+      if (interaction.customId === "feedback_type_select") {
+        const cmd = client.commands.get("feedback");
+        if (cmd?.handleTypeSelect) await cmd.handleTypeSelect(interaction);
       }
       return;
     }
