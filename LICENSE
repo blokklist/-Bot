@@ -1,24 +1,33 @@
-MIT License (with additional restrictions)
+# License
 
-Copyright (c) 2026 [blokklist]
+**Copyright (c) 2026 blokklist**
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to view
-and fork the Software on GitHub.
+This repository and all its contents (the "Software") are made publicly available  
+**solely for transparency and educational purposes**.
 
-However, the following restrictions apply:
+## Permitted Actions
+You are permitted to:
+- View the source code
+- Fork the repository on GitHub
+- Study and analyze the code for personal, non-commercial review
 
-1. The Software is provided solely for transparency and educational purposes.
-2. You may NOT use the Software in any production environment.
-3. You may NOT run, deploy, host, or operate the Software (or any derivative work)
-   for any purpose other than personal study and review.
-4. You may NOT modify, distribute, sublicense, sell, or commercially exploit the Software
-   or any part of it.
+## Prohibited Actions
+You are **strictly prohibited** from:
+- Running, executing, deploying, hosting, or operating the Software (or any modified version)
+- Using the Software in any production, testing, or personal environment
+- Modifying, adapting, extending, or creating derivative works based on the Software
+- Distributing, sublicensing, selling, or commercially exploiting the Software in any way
+- Using any part of the code for building similar bots or services
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This project is **not open source** and is **not licensed for use**.  
+It is published exclusively to enable public scrutiny and transparency regarding the BlocklistBot.
+
+## Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,  
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR  
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE  
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR  
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER  
+DEALINGS IN THE SOFTWARE.
+
+By accessing or viewing this repository, you agree to abide by the terms of this license.
